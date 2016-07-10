@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -76,6 +72,9 @@ namespace AF
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // Seed database with test data 
+            SeedData.Initialize(app.ApplicationServices);
         }
     }
 }
