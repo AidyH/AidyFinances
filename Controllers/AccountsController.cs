@@ -2,6 +2,8 @@ using AF.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using AF.ViewModels;
 using AF.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -13,9 +15,10 @@ namespace AF.Controllers.Accounts
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountsController(ApplicationDbContext context)
+        public AccountsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Add
@@ -24,22 +27,21 @@ namespace AF.Controllers.Accounts
         {
             // Fill the drop down lists
 
-            var viewModel = new AccountsAddViewModel
-            {
-                AccountTypes = _context.AccountTypes.ToList(),
-                Currencies = _context.Currencies.ToList()
-            };
-
+            var viewModel = new AccountsAddViewModel();
+            viewModel.AccountTypes = _context.AccountTypes.ToList();
+            viewModel.Currencies = _context.Currencies.ToList();
 
             return View(viewModel);
         }
-
+        
+        
+        //public ActionResult Add(AccountsAddViewModel viewModel)
 
         // POST: Add
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(AccountsAddViewModel viewModel)
+        public async Task<IActionResult> Add(AccountsAddViewModel viewModel)
         {
             // If not valid, repopulate the view
 
@@ -51,15 +53,16 @@ namespace AF.Controllers.Accounts
             }
 
             // Populate the model
-            var account = new Account
-            {
-                UserId = _userManager.GetUserId(HttpContext.User),
-                Name = viewModel.Name,
-                StartBalence = viewModel.StartBalence,
-                Balence = viewModel.Balence,
-                AccountTypeId = viewModel.AccountType,
-                CurrencyId = viewModel.Currency
-            };
+
+            var account = new Account();
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+
+            account.UserId = await _userManager.GetUserIdAsync(user);
+            account.Name = viewModel.Name;
+            account.StartBalence = viewModel.StartBalence;
+            account.Balence = viewModel.Balence;
+            account.AccountTypeId = viewModel.AccountType;
+            account.CurrencyId = viewModel.Currency;
 
             // Add this to the database context
             _context.Accounts.Add(account);
