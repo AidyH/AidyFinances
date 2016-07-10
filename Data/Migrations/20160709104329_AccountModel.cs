@@ -61,7 +61,7 @@ namespace AF.Data.Migrations
                         name: "FK_Accounts_Currencies_CurrencyId",
                         column: x => x.CurrencyId,
                         principalTable: "Currencies",
-                        principalColumn: "CurrencyID",
+                        principalColumn: "CurrencyId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Accounts_AspNetUsers_UserId",

@@ -109,7 +109,7 @@ namespace AF.Data.Migrations
 
             modelBuilder.Entity("AF.Models.Currency", b =>
                 {
-                    b.Property<int>("CurrencyID")
+                    b.Property<int>("CurrencyId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Abbreviation")
@@ -119,7 +119,7 @@ namespace AF.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("CurrencyID");
+                    b.HasKey("CurrencyId");
 
                     b.ToTable("Currencies");
                 });

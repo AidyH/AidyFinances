@@ -4,7 +4,7 @@ namespace AF.Models
 {
     public class Currency
     {
-        public int CurrencyID { get; set; }
+        public int CurrencyId { get; set; }
 
         [Required]
         public string Name { get; set; }
