@@ -25,7 +25,7 @@ namespace AF
                 // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
-
+            
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -37,7 +37,7 @@ namespace AF
         {
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
