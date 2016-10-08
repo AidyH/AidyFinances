@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AF.Models;
 
-namespace AF.ViewModels
+namespace AF.ViewModels.Accounts
 {
-    public class AccountsAddViewModel
+    public class AccountViewModel
     {
+        public int AccountId { get; set; }
+        
         [Required]
         public string Name { get; set; }
 

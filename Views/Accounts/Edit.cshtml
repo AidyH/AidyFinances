@@ -1,0 +1,26 @@
+@model AF.ViewModels.Accounts.AccountViewModel
+
+<h1>Edit an Account</h1>
+
+<div class="ui segment">    
+    <div class="ui form">
+        <form asp-controller="Accounts" asp-action="Edit" method="post" class="ui large form validate-me" role="form">
+            <div class="field">
+                <label>Name</label>
+                <input asp-for="Name" placeholder="Name"/>
+            </div>
+            <div class="field">
+                <label>Starting Balence</label>
+                <input asp-for="StartBalence"/>
+            </div>
+            <div class="field">
+                <label>Balence</label>
+                <input asp-for="Balence" />
+            </div>
+            <div class="field">
+                <input type="submit" value="Save" class="ui button" />
+                <input type="hidden" asp-for="AccountId" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+@model List<AF.ViewModels.Accounts.AccountsViewModel>
+
+<h1>Accounts</h1>
+
+<form asp-controller="Accounts" asp-action="Add" class="item">
+    <button class="ui inverted button"><i class="plus icon"></i>Add an Account</button>
+</form>
+
+@foreach (var m in Model)
+{
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="eight wide left aligned column">
+                    <h2>@m.Name 
+                        <a asp-controller="Accounts" asp-action="Edit" asp-route-id="@m.AccountId"><i class="setting icon"></i></a>
+                        <a asp-controller="Accounts" asp-action="Delete" asp-route-id="@m.AccountId"><i class="red trash icon"></i></a>
+                    </h2>
+                </div>
+                <div class="eight wide right aligned column"><p>@m.Balence @m.Currency</p></div>
+            </div>
+            <div class="row">
+                <!-- Spacer -->
+            </div>
+      </div>
+        
+        
+        <div class="ui bottom attached button">
+            <i class="list icon"></i>
+            View Transactions
+        </div>
+    </div>
+}
+
+
