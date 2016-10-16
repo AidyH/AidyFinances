@@ -1,0 +1,23 @@
+@model List<AF.ViewModels.Categories.CategoryViewModel>
+
+<h1>Categories</h1>
+
+<form asp-controller="Categories" asp-action="Add" method="get" class="item">
+    <button class="ui inverted button"><i class="plus icon"></i>Add a Category</button>
+</form>
+
+@foreach (var category in Model)
+{
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="eight wide left aligned column">
+                    <h2>@category.Name
+                        <a asp-controller="Categories" asp-action="Edit" asp-route-id="@category.CategoryId"><i class="setting icon"></i></a>
+                        <a asp-controller="Categories" asp-action="Delete" asp-route-id="@category.CategoryId"><i class="red trash icon"></i></a>
+                    </h2>
+                </div>
+            </div>
+      </div>
+    </div>
+}

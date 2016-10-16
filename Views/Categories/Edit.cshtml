@@ -1,0 +1,18 @@
+@model AF.ViewModels.Categories.CategoryViewModel
+
+<h1>Edit a Category</h1>
+
+<div class="ui segment">    
+    <div class="ui form">
+        <form asp-controller="Categories" asp-action="Edit" method="post" class="ui large form validate-me" role="form">
+            <div class="field">
+                <label>Name</label>
+                <input asp-for="Name" placeholder="Name"/>
+            </div>
+            <div class="field">
+                <input type="submit" value="Save" class="ui button" />
+                <input type="hidden" asp-for="CategoryId" />
+            </div>
+        </form>
+    </div>
+</div>
