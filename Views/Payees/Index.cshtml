@@ -12,7 +12,10 @@
         <div class="ui grid">
             <div class="row">
                 <div class="eight wide left aligned column">
-                    <h2>@payee.Name</h2>
+                    <h2>@payee.Name
+                        <a asp-controller="Payees" asp-action="Edit" asp-route-id="@payee.PayeeId"><i class="setting icon"></i></a>
+                        <a asp-controller="Payees" asp-action="Delete" asp-route-id="@payee.PayeeId"><i class="red trash icon"></i></a>
+                    </h2>
                 </div>
             </div>
       </div>
