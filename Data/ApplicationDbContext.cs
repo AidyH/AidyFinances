@@ -10,6 +10,8 @@ namespace AF.Data
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Payee> Payees { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
