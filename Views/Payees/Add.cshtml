@@ -1,0 +1,17 @@
+@model AF.ViewModels.Payees.PayeeViewModel
+
+<h1>Add a Payee</h1>
+
+<div class="ui segment">    
+    <div class="ui form">
+        <form asp-controller="Payees" asp-action="Add" method="post" class="ui large form validate-me" role="form">
+            <div class="field">
+                <label>Name</label>
+                <input asp-for="Name" placeholder="Name"/>
+            </div>
+            <div class="field">
+                <input type="submit" value="Save" class="ui button" />
+            </div>
+        </form>
+    </div>
+</div>
