@@ -15,8 +15,11 @@ namespace AF.Models
         // Foreign keys
         [Required]
         public int CategoryId { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
         // Navigation properties
         public Category Category { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
