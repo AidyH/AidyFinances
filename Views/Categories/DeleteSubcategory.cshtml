@@ -1,0 +1,18 @@
+@model AF.ViewModels.Categories.SubcategoryViewModel
+
+<h1>Delete Subcategory</h1>
+
+<div class="ui segment">    
+    <div class="ui form">
+        <form asp-controller="Categories" asp-action="DeleteSubcategory" method="post" class="ui large form validate-me" role="form">
+            <div class="field">
+                <p>Are you sure you want to delete @Model.Name?
+            </div>
+            <div class="field">
+                <input type="submit" value="Delete" class="red ui button" />
+                <a asp-controller="Categories" asp-action="Index">Cancel</a>
+                <input type="hidden" asp-for="SubcategoryId" />
+            </div>
+        </form>
+    </div>
+</div>

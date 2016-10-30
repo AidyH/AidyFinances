@@ -107,9 +107,11 @@ namespace AF.Controllers.Categories
             }
 
             // Populate the model 
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             var subcategory = new Subcategory() {
                 Name = model.Name,
-                CategoryId = model.CategoryId
+                CategoryId = model.CategoryId,
+                UserId = await _userManager.GetUserIdAsync(user)
             };
 
             // Add this to the database context
@@ -171,6 +173,57 @@ namespace AF.Controllers.Categories
             return RedirectToAction("Index", "Categories");
         }
 
+        // GET: EditSubcategory
+        [Authorize]
+        public async Task<IActionResult> EditSubcategory(int id)
+        {
+            // Load the subcategory that's being edited
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            string userId = await _userManager.GetUserIdAsync(user);
+ 
+            Subcategory subcategory = new Subcategory();
+            subcategory = _context.Subcategories.SingleOrDefault(s => s.SubcategoryId == id && s.UserId == userId);
+
+            SubcategoryViewModel model = new SubcategoryViewModel() {
+                SubcategoryId = subcategory.SubcategoryId,
+                Name = subcategory.Name
+            };
+
+            return View(model);
+        }
+
+        // POST: EditSubcategory
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSubcategory(SubcategoryViewModel model)
+        {
+            // If not valid, repopulate the view
+
+            if (!ModelState.IsValid)
+            {
+                return View("EditSubcategory", model);
+            }
+
+            // Update database object
+
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            string userId = await _userManager.GetUserIdAsync(user);
+            
+            Subcategory subcategory = new Subcategory();
+            subcategory = _context.Subcategories.SingleOrDefault(s => s.SubcategoryId == model.SubcategoryId && s.UserId == userId);
+
+            if (subcategory != null)
+            {
+                subcategory.UserId = userId;
+                subcategory.Name = model.Name;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Categories");
+        }
+
         // GET: Delete
         [Authorize]
         public async Task<IActionResult> Delete(int id)
@@ -206,6 +259,48 @@ namespace AF.Controllers.Categories
             if (category != null)
             {
                 _context.Categories.Remove(category);
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Categories");
+        }
+
+        // GET: DeleteSubcategory
+        [Authorize]
+        public async Task<IActionResult> DeleteSubcategory(int id)
+        {
+            // Load the subcategory that's being deleted
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            string userId = await _userManager.GetUserIdAsync(user);
+ 
+            Subcategory subcategory = _context.Subcategories.SingleOrDefault(s => s.SubcategoryId == id && s.UserId == userId);
+
+            SubcategoryViewModel model = new SubcategoryViewModel() {
+                SubcategoryId = subcategory.SubcategoryId,
+                Name = subcategory.Name
+            };
+
+            return View(model);
+        }
+
+        // POST: DeleteSubcategory
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteSubcategory(SubcategoryViewModel model)
+        {
+            // Update database object
+
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            string userId = await _userManager.GetUserIdAsync(user);
+            
+            Subcategory subcategory = new Subcategory();
+            subcategory = _context.Subcategories.SingleOrDefault(a => a.SubcategoryId == model.SubcategoryId && a.UserId == userId);
+
+            if (subcategory != null)
+            {
+                _context.Subcategories.Remove(subcategory);
             }
 
             _context.SaveChanges();

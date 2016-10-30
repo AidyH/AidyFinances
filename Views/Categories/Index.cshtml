@@ -33,7 +33,10 @@
                         <div class="ui grid">
                             <div class="row">
                                 <div class="eight wide left aligned column">
-                                    <h3>@subcategory.Name</h3>
+                                    <h3>@subcategory.Name
+                                        <a asp-controller="Categories" asp-action="EditSubcategory" asp-route-id="@subcategory.SubcategoryId"><i class="setting icon"></i></a>
+                                        <a asp-controller="Categories" asp-action="DeleteSubcategory" asp-route-id="@subcategory.SubcategoryId"><i class="red trash icon"></i></a>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
