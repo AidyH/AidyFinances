@@ -20,4 +20,26 @@
             </div>
       </div>
     </div>
+    <div class="ui grid">
+        <div class="row">
+            <div class="one wide left aligned column"></div>
+            <div class="fifteen wide left aligned column">
+                <form asp-controller="Categories" asp-action="AddSubcategory" asp-route-id="@category.CategoryId" method="get" class="item">
+                    <button class="ui inverted button"><i class="plus icon"></i>Add a Subcategory</button>
+                </form>
+                @foreach (var subcategory in category.Subcategories)
+                {
+                    <div class="ui segment">
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="eight wide left aligned column">
+                                    <h3>@subcategory.Name</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 }

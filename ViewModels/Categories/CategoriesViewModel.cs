@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using AF.Models;
 
 namespace AF.ViewModels.Categories
 {
@@ -8,5 +10,7 @@ namespace AF.ViewModels.Categories
         
         [Required]
         public string Name { get; set; }
+
+        public IEnumerable<Subcategory> Subcategories { get; set; }
     }
 }

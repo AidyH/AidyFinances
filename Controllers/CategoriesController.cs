@@ -31,11 +31,18 @@ namespace AF.Controllers.Categories
             ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
             string userId = await _userManager.GetUserIdAsync(user);
 
-            model = ( from a in  _context.Categories
-                    where a.UserId == userId
+            model = ( from c in  _context.Categories
+                    where c.UserId == userId
                     select new CategoryViewModel() {
-                        CategoryId = a.CategoryId,
-                        Name = a.Name
+                        CategoryId = c.CategoryId,
+                        Name = c.Name,
+                        Subcategories = from s in _context.Subcategories 
+                                        where s.CategoryId == c.CategoryId 
+                                        select new Subcategory(){
+                                            SubcategoryId = s.SubcategoryId,
+                                            Name = s.Name,
+                                            CategoryId = s.CategoryId
+                                        }
                     }).ToList();
 
             return View(model);
@@ -76,6 +83,43 @@ namespace AF.Controllers.Categories
 
             return RedirectToAction("Index", "Categories");
         }
+
+        // GET: AddSubcategory
+        [Authorize]
+        public IActionResult AddSubcategory(int id)
+        {
+            var model = new SubcategoryViewModel() {
+                CategoryId = id
+            };
+            return View(model);
+        }
+
+        // POST: AddSubcategory
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddSubcategory(SubcategoryViewModel model)
+        {
+            // If not valid, repopulate the view
+            if (!ModelState.IsValid)
+            {
+                return View("AddSubcategory", model);
+            }
+
+            // Populate the model 
+            var subcategory = new Subcategory() {
+                Name = model.Name,
+                CategoryId = model.CategoryId
+            };
+
+            // Add this to the database context
+            _context.Subcategories.Add(subcategory);
+
+            // Save it to the database
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Categories");
+        }     
 
         // GET: Edit
         [Authorize]
