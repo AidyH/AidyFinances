@@ -11,6 +11,7 @@ namespace AF.Data
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Payee> Payees { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Subcategory> Subcategories { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
