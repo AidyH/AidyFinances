@@ -44,8 +44,7 @@ namespace AF
 				throw new Exception("Connection string not set. If you are using secrets.json, check the Development environmental variable is set.");
 			}
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(connectionString)));
+			services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
