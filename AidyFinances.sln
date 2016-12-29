@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 15.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AidyFinances", "src\AidyFinances\AidyFinances.csproj", "{CDDD381C-B9EE-4E66-8295-1E16F3B8D223}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AidyFinances.Test", "src\AidyFinances.Test\AidyFinances.Test.csproj", "{5EED24FD-F425-42C7-A600-90C3A9FDC512}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Any CPU = Release|Any CPU
@@ -25,5 +27,17 @@ Global
 		{CDDD381C-B9EE-4E66-8295-1E16F3B8D223}.Debug|x64.Build.0 = Debug|x64
 		{CDDD381C-B9EE-4E66-8295-1E16F3B8D223}.Debug|x86.ActiveCfg = Debug|x86
 		{CDDD381C-B9EE-4E66-8295-1E16F3B8D223}.Debug|x86.Build.0 = Debug|x86
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Release|x64.ActiveCfg = Release|x64
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Release|x64.Build.0 = Release|x64
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Release|x86.ActiveCfg = Release|x86
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Release|x86.Build.0 = Release|x86
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Debug|x64.ActiveCfg = Debug|x64
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Debug|x64.Build.0 = Debug|x64
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Debug|x86.ActiveCfg = Debug|x86
+		{5EED24FD-F425-42C7-A600-90C3A9FDC512}.Debug|x86.Build.0 = Debug|x86
 	EndGlobalSection
 EndGlobal
