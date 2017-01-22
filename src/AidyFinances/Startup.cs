@@ -24,7 +24,7 @@ namespace AF
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                builder.AddUserSecrets<Startup>();
             }
             
             builder.AddEnvironmentVariables();
@@ -39,12 +39,7 @@ namespace AF
 			// Add framework services.
 			string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-			if (connectionString == "Configure your own connection string here.")
-			{
-				throw new Exception("Connection string not set. If you are using secrets.json, check the Development environmental variable is set.");
-			}
-
-			services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+			services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
